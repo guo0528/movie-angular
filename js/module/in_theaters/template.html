@@ -1,0 +1,29 @@
+<h1 class="page-header">{{title}}</h1>
+<div class="list-group ">
+    <a ng-repeat="item in subjects" ng-href="{{'#/subject/'+item.id}}" class="list-group-item">
+        <div class="media">
+            <div class="media-left">
+                <img class="media-object" alt="{{item.title}}" ng-src="{{item.images.medium}}">
+            </div>
+            <div class="media-body">
+                <span class="badge pull-right">{{item.rating.average}}</span>
+                <h3 class="media-heading ">{{item.title}}</h3>
+                <p>类型：<span>{{item.genres.join('、')}}</span>&nbsp;&nbsp;&nbsp;&nbsp;上映年份：<span >{{item.year}}</span></p>
+                <p>导演：
+                    <span ng-repeat="directors in item.directors">{{directors.name}}{{$last?'':'、'}}</span> </p>
+                <p>主演：
+                    <span ng-repeat="casts in item.casts">{{casts.name}}{{$last?'':'、'}}</span>
+                </p>
+            </div>
+        </div>
+    </a>
+</div>
+<div>
+    <p>总共：{{total}}条记录，第{{page}}/{{pageTotal}}页</p>
+    <nav>
+        <ul class="pager">
+            <li ng-class="{'disabled':page<=1}" ng-click="upPage()"><a>上一页</a></li>
+            <li ng-class="{'disabled':page>=pageTotal}" ng-click="downPage()"><a>下一页</a></li>
+        </ul>
+    </nav>
+</div>
